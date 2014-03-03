@@ -11,7 +11,7 @@
     "gm": "~1.14.2"
   },
   "scripts": {
-    "prestart": "coffee -c *.coffee",
+    "prestart": "npm install; coffee -c *.coffee",
     "start": "node app"
   }
 }
