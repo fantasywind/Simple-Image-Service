@@ -2,6 +2,23 @@ express = require 'express'
 http = require 'http'
 path = require 'path'
 gm = require 'gm'
+program = require 'commander'
+
+thumbList = (val)->
+  result = []
+  thumb = val.split ','
+  for size in thumb
+    size = parseInt size.trim(), 10
+    result.push size if !isNaN size
+  return result
+
+program.version '0.0.1'
+program.option '-s, --size [image width in px]', 'Maxinum Image Size', parseInt
+program.option '-t, --thumb [thumb width in px]', 'Thumb size (seperate with ",")', thumbList
+program.parse process.argv
+
+MAX_WIDTH = program.size or Math.Infinity
+THUMBS = program.thumb
 
 app = express()
 
